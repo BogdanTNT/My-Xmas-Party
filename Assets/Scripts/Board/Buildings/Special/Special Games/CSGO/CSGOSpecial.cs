@@ -36,9 +36,9 @@ public class CSGOSpecial : SpecialBase
         for (int i = 0; i < 5; i++)
         {
             Vector3 pos = start.position;
-            float d = (end.position.x - 1 - start.position.x) / 5;
+            float d = (end.position.x - start.position.x) / 5;
             pos.x += i * d;
-            //Debug.Log(pos.x);
+            Debug.Log(pos.x);
             GameObject n = Instantiate(uiPrefab, pos, Quaternion.identity);
 
             var g = n.GetComponent<WeaponImage>();
@@ -49,6 +49,9 @@ public class CSGOSpecial : SpecialBase
 
             //Debug.Log(i);
             NetworkServer.Spawn(n);
+
+            RpcSetupParent(weapons[i].transform, scroller);
+
         }
     }
 
@@ -68,6 +71,7 @@ public class CSGOSpecial : SpecialBase
     protected override void UpdateFunc()
     {
         base.UpdateFunc();
+        // return;
         for (int i = 0; i < weapons.Count; i++)
         {
             //Debug.Log("DaA");
