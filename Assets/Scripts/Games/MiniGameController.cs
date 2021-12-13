@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class MiniGameController : MonoBehaviour
+public class MiniGameController : NetworkBehaviour
 {
     #region Singleton
 
@@ -45,36 +46,40 @@ public class MiniGameController : MonoBehaviour
         WaitForGame,
         Finishing
     }
-    public States state;
+    [SyncVar(hook = nameof(UpdateUI))] public States state;
 
-    // Start is called before the first frame update
-    void Start()
+    public class Battle 
     {
+        public O.Player defence;
+        public List<O.Player> attackers;
+
+        public int index;
+
+        public Battle(O.Player def, List<O.Player> att){
+            defence = def;
+            attackers = att;
+            index = attackers[0].currentPlace;
+        }
+    }
+    [SerializeField] private List<Battle> battles = new List<Battle>();
+
+    public void AddBattle(O.Player defence, List<O.Player> attack) {
+
+        Battle b = new Battle(defence, attack);
+        battles.Add(b);
+    }
+
+    [Server]
+    public void StartBattle() {
+        ChangeState(States.Starting);
+    }
+
+    private void UpdateUI(States old, States now) {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(state == States.Closed)
-        {
-            //Debug.Log("No minigame is player at the moment");
-        }
-        else if(state == States.Starting)
-        {
-            //Debug.Log("The game is starting up");
-        }
-        else if(state == States.WaitForTutorial)
-        {
-            //Debug.Log("Waiting for everyone to read the tutorial");
-        }
-        else if(state == States.WaitForGame)
-        {
-            //Debug.Log("Waiting to see who wins the game");
-        }
-        else if(state == States.Finishing)
-        {
-            //Debug.Log("Waiting for game to close");
-        }
-    }
+    [Server]
+    private void ChangeState(States now) => state = now;
+
+    
 }

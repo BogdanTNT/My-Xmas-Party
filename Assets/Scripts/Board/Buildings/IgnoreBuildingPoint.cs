@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-public class BuildingPoint : NetworkBehaviour
+public class IgnoreBuildingPoint : NetworkBehaviour
 {
     public O.Player owner = null;
 
