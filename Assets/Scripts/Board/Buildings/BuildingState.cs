@@ -58,7 +58,7 @@ public class BuildingState : NetworkBehaviour
         }
         else
         {
-            // Requiest for battle
+            MiniGameController.instance.AddBattle(O.Player.WhoOwnsThis(index), WhoAttack());
             Debug.Log($"{pl.playerName} is fighting for {p.playerName} castle.");
 
         }
@@ -80,5 +80,19 @@ public class BuildingState : NetworkBehaviour
         {
             // coboara cladirea
         }
+    }
+
+    private List<O.Player> WhoAttack()
+    {
+        List<O.Player> attackers = new List<O.Player>();
+        attackers = O.Player.AllPlayers();
+        for(int i = 0; i < attackers.Count; i++){
+            if(!attackers[i].buildIndex.Contains(index))
+            {
+                attackers.RemoveAt(i);
+                i--;
+            }
+        }
+        return attackers;
     }
 }

@@ -111,7 +111,7 @@ namespace Special
 
         IEnumerator Lag()
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(3f);
 
             CmdFinish();
         }
