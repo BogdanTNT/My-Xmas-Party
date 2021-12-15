@@ -75,11 +75,10 @@ public class MiniGameController : NetworkBehaviour
     }
 
     private void UpdateUI(States old, States now) {
-        
+ 
     }
 
     [Server]
     private void ChangeState(States now) => state = now;
 
-    
 }
