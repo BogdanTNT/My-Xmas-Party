@@ -223,7 +223,8 @@
     <Compile Include="Assets/Scripts/Board/Buildings/Special/Special Games/CSGO/CSGOSpecial.cs" />
     <Compile Include="Assets/LeanTween/Examples/Archived/TestingRigidbodyCS.cs" />
     <Compile Include="Assets/LeanTween/Examples/Scripts/Following.cs" />
-    <Compile Include="Assets/Scripts/Games/BattleManager.cs" />
+    <Compile Include="Assets/Scripts/Games/GameBase.cs" />
+    <Compile Include="Assets/Scripts/Games/Formation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.dll" />

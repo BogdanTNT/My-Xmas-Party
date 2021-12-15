@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using Games;
 
 public class MiniGameController : NetworkBehaviour
 {
@@ -14,7 +15,7 @@ public class MiniGameController : NetworkBehaviour
         if (instance == null)
             instance = this;
         else
-            Debug.Log(this + " is already in the scene");
+            Debug.Log($"{this} is already in the scene");
     }
 
     #endregion
@@ -63,6 +64,8 @@ public class MiniGameController : NetworkBehaviour
     }
     [SerializeField] private List<Battle> battles = new List<Battle>();
 
+    public List<GameBase> games = new List<GameBase>();
+
     public void AddBattle(O.Player defence, List<O.Player> attack) {
 
         Battle b = new Battle(defence, attack);
@@ -72,6 +75,7 @@ public class MiniGameController : NetworkBehaviour
     [Server]
     public void StartBattle() {
         ChangeState(States.Starting);
+
     }
 
     private void UpdateUI(States old, States now) {
