@@ -23,7 +23,7 @@ namespace O
 
         [SyncVar] public int money;
 
-        public SyncList<int> buildIndex = new SyncList<int>();
+        readonly public SyncList<int> buildIndex = new SyncList<int>();
 
         public NavMeshAgent agent;
         public int degreesPerSecond;
