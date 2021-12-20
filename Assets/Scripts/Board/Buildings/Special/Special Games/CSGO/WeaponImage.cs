@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
 
+// Itemu in canvas
+// Trebuie facut un prefab cu asta
 public class WeaponImage : NetworkBehaviour
 {
     public Image image;
@@ -11,6 +13,7 @@ public class WeaponImage : NetworkBehaviour
 
     [SyncVar(hook = nameof(OnIndexChange))] public int index;
 
+    // Alege un item random
     [Server]
     public void Change()
     {

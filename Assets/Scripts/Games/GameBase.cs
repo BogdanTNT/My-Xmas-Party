@@ -19,13 +19,13 @@ namespace Games
         [Server]
         public virtual void Setup()
         {
+            // Teleporteaza playeri la zona in care e jocu
             _points = formation.EvaluatePoints().ToList();
             players = O.Player.AllPlayers();
 
             for(int i = 0; i < players.Count; i++)
             {
                 players[i].transform.position = _points[i];
-
             }
         }
 
@@ -49,4 +49,5 @@ namespace Games
 
 
     }
+
 }

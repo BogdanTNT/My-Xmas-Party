@@ -22,9 +22,13 @@ public class SpecialManager : NetworkBehaviour
 
     public enum States
     {
+        // Closed: Inactiv
         Closed,
-        Starting, 
+        // Starting: Se activeaza
+        Starting,
+        // Se asteapta interactiunea playerului
         WaitForSpecial,
+        // Se dezactiveaza
         Finishing
     }
     [SyncVar] public States state;
@@ -40,8 +44,10 @@ public class SpecialManager : NetworkBehaviour
         state = States.Closed;
     }
 
+    // O sa inceapa un special
     public void Starting(int special, O.Player p)
     {
+        // Alege un special in functie de punctu pe care e playeru
         spec = special;
         specials[spec].Setup(p);
         state = States.Starting;

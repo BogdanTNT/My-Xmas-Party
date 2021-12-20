@@ -15,6 +15,7 @@ namespace Special
 
         [SyncVar] public string player;
 
+        // Canvasu o sa aiba un network transform ca toti playeri sa vada ce a ales playeru cu specialu 
         protected virtual void Awake()
         {
             //UI.SetActive(true);
@@ -22,6 +23,7 @@ namespace Special
             Debug.Log("da");
         }
 
+        // Reface canvasu sa fie vizibil si il dezactiveaza
         public override void OnStartClient()
         {
             base.OnStartClient();
@@ -29,6 +31,7 @@ namespace Special
             UI.SetActive(false);
         }
 
+        // Incepe specialu
         [Server]
         public virtual void Setup(O.Player p)
         {
@@ -63,8 +66,6 @@ namespace Special
             
         }
 
-        //[Server]
-        //[Command(requiresAuthority = false)]
         public virtual void CmdFinish()
         {
             started = false;
